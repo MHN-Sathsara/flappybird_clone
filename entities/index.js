@@ -16,7 +16,8 @@ export default (restart) => {
 
   world.gravity.y = 0.4; // Adjust gravity to make the game more challenging
 
-  const pipeSizePosA = getPipeSizePosPair(-300);
+  const pipeSizePosA = getPipeSizePosPair();
+  const pipeSizePosB = getPipeSizePosPair(windowWidth * 0.9);
   return {
     physics: { engine, world },
     Bird: createBird(
@@ -37,6 +38,20 @@ export default (restart) => {
       "ObstacleBottom1",
       pipeSizePosA.pipeBottom.pos,
       pipeSizePosA.pipeBottom.size,
+      "blue"
+    ),
+    ObstacleTop2: createObstacle(
+      world,
+      "ObstacleTop2",
+      pipeSizePosB.pipeTop.pos,
+      pipeSizePosB.pipeTop.size,
+      "red"
+    ),
+    ObstacleBottom2: createObstacle(
+      world,
+      "ObstacleBottom2",
+      pipeSizePosB.pipeBottom.pos,
+      pipeSizePosB.pipeBottom.size,
       "blue"
     ),
     Floor: createFloor(
