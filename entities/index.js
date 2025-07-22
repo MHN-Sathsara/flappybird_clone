@@ -1,6 +1,7 @@
 import Matter from "matter-js";
 import createBird from "../components/Bird";
 import createFloor from "../components/Floor";
+import createObstacle from "../components/Obstacle";
 
 import { Dimensions } from "react-native";
 
@@ -20,6 +21,13 @@ export default (restart) => {
       { x: 50, y: 200 },
       { width: 50, height: 50 },
       "black"
+    ),
+    ObstacleTop1: createObstacle(
+      world,
+      "ObstacleTop1",
+      { x: windowWidth - 50, y: 200 },
+      { width: 50, height: 50 },
+      "red"
     ),
     Floor: createFloor(
       world,
