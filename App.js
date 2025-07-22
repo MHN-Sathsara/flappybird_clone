@@ -39,7 +39,7 @@ export default function App() {
               setCurrentPoints(0);
               break;
             case "new-point":
-              setCurrentPoints(currentPointsPoints + 1);
+              setCurrentPoints(currentPoints + 1);
               break;
           }
         }}
