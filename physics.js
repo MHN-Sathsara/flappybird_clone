@@ -8,10 +8,13 @@ const Physics = (entities, { touches, time, dispatch }) => {
     .forEach((t) => {
       Matter.Body.setVelocity(entities.Bird.body, {
         x: 0,
-        y: -8,
+        y: -5,
       });
     });
-  Matter.Engine.update(engine, time.delta);
+
+  // Cap the delta time to prevent physics instability
+  const cappedDelta = Math.min(time.delta, 16.667);
+  Matter.Engine.update(engine, cappedDelta);
 
   return entities;
 };

@@ -1,5 +1,11 @@
 import Matter from "matter-js";
 import createBird from "../components/Bird";
+import createFloor from "../components/Floor";
+
+import { Dimensions } from "react-native";
+
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
 
 export default (restart) => {
   let engine = Matter.Engine.create({ enableSleeping: false });
@@ -14,6 +20,12 @@ export default (restart) => {
       { x: 50, y: 200 },
       { width: 50, height: 50 },
       "black"
+    ),
+    Floor: createFloor(
+      world,
+      { x: windowWidth / 2, y: windowHeight - 25 },
+      { width: windowWidth, height: 50 },
+      "green"
     ),
   };
 };

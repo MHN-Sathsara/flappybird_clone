@@ -2,7 +2,7 @@ import Matter from "matter-js";
 import React from "react";
 import { View } from "react-native";
 
-const Bird = (props) => {
+const Floor = (props) => {
   const widthBody = props.body.bounds.max.x - props.body.bounds.min.x;
   const heightBody = props.body.bounds.max.y - props.body.bounds.min.y;
 
@@ -14,9 +14,7 @@ const Bird = (props) => {
   return (
     <View
       style={{
-        borderWidth: 1,
-        borderColor: color,
-        borderStyle: "solid",
+        backgroundColor: color,
         position: "absolute",
         left: xBody,
         top: yBody,
@@ -28,21 +26,22 @@ const Bird = (props) => {
 };
 
 export default (world, position, size, color) => {
-  const initialBird = Matter.Bodies.rectangle(
+  const initialFloor = Matter.Bodies.rectangle(
     position.x,
     position.y,
     size.width,
     size.height,
     {
-      label: "bird",
+      label: "Floor",
+      isStatic: true, // Make the floor static so it doesn't move
     }
   );
-  Matter.World.add(world, initialBird);
+  Matter.World.add(world, initialFloor);
 
   return {
-    body: initialBird,
+    body: initialFloor,
     size: size,
     color: color,
-    renderer: Bird,
+    renderer: <Floor />,
   };
 };
