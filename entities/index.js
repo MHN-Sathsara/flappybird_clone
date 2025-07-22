@@ -4,6 +4,8 @@ import createFloor from "../components/Floor";
 import createObstacle from "../components/Obstacle";
 
 import { Dimensions } from "react-native";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+import { getPipeSizePosPair } from "../utils/random";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -14,6 +16,7 @@ export default (restart) => {
 
   world.gravity.y = 0.4; // Adjust gravity to make the game more challenging
 
+  const pipeSizePosA = getPipeSizePosPair(-300);
   return {
     physics: { engine, world },
     Bird: createBird(
@@ -25,8 +28,8 @@ export default (restart) => {
     ObstacleTop1: createObstacle(
       world,
       "ObstacleTop1",
-      { x: windowWidth - 50, y: 200 },
-      { width: 50, height: 50 },
+      pipeSizePosA.pipeTop.pos,
+      pipeSizePosA.pipeTop.size,
       "red"
     ),
     Floor: createFloor(
