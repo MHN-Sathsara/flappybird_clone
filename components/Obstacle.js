@@ -35,6 +35,7 @@ export default (world, label, position, size, color) => {
     size.height,
     {
       label,
+      isStatic: true, // Make the obstacle static so it doesn't move
     }
   );
   Matter.World.add(world, initialObstacle);

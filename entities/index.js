@@ -32,6 +32,13 @@ export default (restart) => {
       pipeSizePosA.pipeTop.size,
       "red"
     ),
+    ObstacleBottom1: createObstacle(
+      world,
+      "ObstacleBottom1",
+      pipeSizePosA.pipeBottom.pos,
+      pipeSizePosA.pipeBottom.size,
+      "blue"
+    ),
     Floor: createFloor(
       world,
       { x: windowWidth / 2, y: windowHeight - 25 },
