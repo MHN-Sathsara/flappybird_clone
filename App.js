@@ -7,15 +7,26 @@ import Physics from "./physics";
 
 export default function App() {
   const [running, setRunning] = useState(false);
+  const [gameEngine, setgameEngine] = useState(null);
   useEffect(() => {
     setRunning(true);
   }, []);
   return (
     <View style={{ flex: 1 }}>
       <GameEngine
+        ref={(ref) => {
+          setgameEngine(ref);
+        }}
         systems={[Physics]}
         entities={entities()}
         running={running}
+        onEvent={(e) => {
+          switch (e.type) {
+            case "game-over":
+              setRunning(false);
+              gameEngine.stop();
+          }
+        }}
         style={{
           position: "absolute",
           top: 0,
