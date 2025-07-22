@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import entities from "./entities";
 import Physics from "./physics";
@@ -10,10 +10,20 @@ export default function App() {
   const [gameEngine, setgameEngine] = useState(null);
   const [currentPoints, setCurrentPoints] = useState(0);
   useEffect(() => {
-    setRunning(true);
+    setRunning(false);
   }, []);
   return (
     <View style={{ flex: 1 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 40,
+          fontWeight: "bold",
+          margin: 40,
+        }}
+      >
+        {currentPoints}
+      </Text>
       <GameEngine
         ref={(ref) => {
           setgameEngine(ref);
@@ -40,8 +50,31 @@ export default function App() {
           right: 0,
           bottom: 0,
         }}
-      ></GameEngine>
-      <StatusBar style="auto" hidden={true} />
+      >
+        <StatusBar style="auto" hidden={true} />
+      </GameEngine>
+      {!running ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: "green",
+              paddingHorizontal: 30,
+              paddingVertical: 10,
+              borderRadius: 10,
+            }}
+            onPress={() => {
+              setRunning(true);
+              gameEngine.start();
+            }}
+          >
+            <Text style={{ color: "white", fontWeight: "bold", fontSize: 30 }}>
+              START GAME
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 }
